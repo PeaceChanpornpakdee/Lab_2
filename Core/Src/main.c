@@ -117,56 +117,60 @@ int main(void)
 
 		  if(ButtonStateArray[0] != 0 && ButtonStateArray[1] == 0)
 		  {
-//			  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);  //Set ON RESET OFF
+			  uint32_t BlinkTimeStamp = HAL_GetTick();
+			  while(HAL_GetTick() - BlinkTimeStamp < 400)
+			  {
+				  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);  //Set ON RESET OFF
+			  }
 
-		  switch(ButtonMatrixState)
-		  {
-			  case(0b1):  		// #7
-			  	    Id = (Id * 10) + 7;
-					break;
-			  case(0b10):  		// #8
-			  	  	Id = (Id * 10) + 8;
-					break;
-			  case(0b100):  	// #9
-			  	  	Id = (Id * 10) + 9;
-					break;
-			  case(0b10000):  	// #4
-			  	    Id = (Id * 10) + 4;
-					break;
-			  case(0b100000):  	// #5
-			  	  	Id = (Id * 10) + 5;
-					break;
-			  case(0b1000000):  // #6
-			  	  	Id = (Id * 10) + 6;
-					break;
-			  case(0b100000000):  	// #1
-			  	    Id = (Id * 10) + 1;
-					break;
-			  case(0b1000000000):  	// #2
-			        Id = (Id * 10) + 2;
-					break;
-			  case(0b10000000000):  // #3
-			  	  	Id = (Id * 10) + 3;
-					break;
-			  case(0b1000000000000):  // #0
-			  	  	Id = (Id * 10);
-					break;
-			  case(0b1000):  			// CLEAR
-			  	    Id = 0;
-			  	  	PasswordCorrect = 0;
-					break;
-			  case(0b10000000):   		// BackSpace
-					Id = Id / 10;
-					break;
-			  case(0b1000000000000000):  // OK
-			  	  	if(Id == 62)
-			  	  	{
-			  	  		PasswordCorrect = 1;
-			  	  	}
-					break;
-			  default:
-				    break;
-		  }
+			  switch(ButtonMatrixState)
+			  {
+				  case(0b1):  		// #7
+						Id = (Id * 10) + 7;
+						break;
+				  case(0b10):  		// #8
+						Id = (Id * 10) + 8;
+						break;
+				  case(0b100):  	// #9
+						Id = (Id * 10) + 9;
+						break;
+				  case(0b10000):  	// #4
+						Id = (Id * 10) + 4;
+						break;
+				  case(0b100000):  	// #5
+						Id = (Id * 10) + 5;
+						break;
+				  case(0b1000000):  // #6
+						Id = (Id * 10) + 6;
+						break;
+				  case(0b100000000):  	// #1
+						Id = (Id * 10) + 1;
+						break;
+				  case(0b1000000000):  	// #2
+						Id = (Id * 10) + 2;
+						break;
+				  case(0b10000000000):  // #3
+						Id = (Id * 10) + 3;
+						break;
+				  case(0b1000000000000):	// #0
+						Id = (Id * 10);
+						break;
+				  case(0b1000):  			// CLEAR
+						Id = 0;
+						PasswordCorrect = 0;
+						break;
+				  case(0b10000000):   		// BackSpace
+						Id = Id / 10;
+						break;
+				  case(0b1000000000000000):  // OK
+						if(Id == 62340500001)
+						{
+							PasswordCorrect = 1;
+						}
+						break;
+				  default:
+						break;
+			  }
 		  }
 		  ButtonStateArray[1] = ButtonStateArray[0];
 
