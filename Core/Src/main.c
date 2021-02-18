@@ -115,9 +115,9 @@ int main(void)
 		  ButtonMatrixUpdate();
 		  ButtonStateArray[0] = ButtonMatrixState;
 
-		  if(ButtonStateArray[0] != 0 && ButtonStateArray[1] == 0)
+		  if(ButtonStateArray[0] != 0 && ButtonStateArray[1] == 0) 	//If any Button is Pressed
 		  {
-			  uint32_t BlinkTimeStamp = HAL_GetTick();
+			  uint32_t BlinkTimeStamp = HAL_GetTick();		//Blink 1 time when Pressed
 			  while(HAL_GetTick() - BlinkTimeStamp < 400)
 			  {
 				  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);  //Set ON RESET OFF
@@ -162,7 +162,7 @@ int main(void)
 				  case(0b10000000):   		// BackSpace
 						Id = Id / 10;
 						break;
-				  case(0b1000000000000000):  // OK
+				  case(0b1000000000000000): // OK
 						if(Id == 62340500001)
 						{
 							PasswordCorrect = 1;

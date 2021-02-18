@@ -407,7 +407,7 @@ int main(void)
  8000506:	881b      	ldrh	r3, [r3, #0]
  8000508:	80bb      	strh	r3, [r7, #4]
 
-		  if(ButtonStateArray[0] != 0 && ButtonStateArray[1] == 0)
+		  if(ButtonStateArray[0] != 0 && ButtonStateArray[1] == 0) 	//If any Button is Pressed
  800050a:	88bb      	ldrh	r3, [r7, #4]
  800050c:	2b00      	cmp	r3, #0
  800050e:	f000 81c3 	beq.w	8000898 <main+0x3c0>
@@ -415,7 +415,7 @@ int main(void)
  8000514:	2b00      	cmp	r3, #0
  8000516:	f040 81bf 	bne.w	8000898 <main+0x3c0>
 		  {
-			  uint32_t BlinkTimeStamp = HAL_GetTick();
+			  uint32_t BlinkTimeStamp = HAL_GetTick();		//Blink 1 time when Pressed
  800051a:	f000 fcff 	bl	8000f1c <HAL_GetTick>
  800051e:	60b8      	str	r0, [r7, #8]
 			  while(HAL_GetTick() - BlinkTimeStamp < 400)
